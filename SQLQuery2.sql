@@ -39,3 +39,15 @@ tbVenda(dataVenda,valorTotalVenda)
 VALUES
 (01/02/2014,4500)
 ,(03/02/2014,3400)
+,(10/02/2014,2100)
+,(15/02/2014,2700)
+,(17/03/2014,560)
+,(09/04/2014,1200)
+,(07/05/2014,3500)
+,(07/05/2014,3400)
+,(05/05/2014,4000)
+
+INSERT INTO tbItensVenda
+(quantidadeItensVenda,subTotalItensVenda)
+VALUES
+(
