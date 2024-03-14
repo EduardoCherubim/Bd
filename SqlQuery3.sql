@@ -1,35 +1,25 @@
 USE bdEstoque
 
-UPDATE INTO bdProduto (valorProduto)
-VALUES(5.99)
-,(6.58)
-,(6.47)
-,(7.15)
+UPDATE bdProduto
+SET valorProduto = valorProduto * 1.10
 WHERE codFabricante = 1
 
-UPDATE INTO bdProduto (valorProduto)
-VALUES (5.35)
-,(33.48)
+UPDATE bdProduto
+SET valorProduto = valorProduto * 0.93
 WHERE codFabricante = 2
 
-UPDATE INTO bdProduto (quantidadeProduto)
-VALUES (1470)
-,(2270)
-,(2470)
-,(1570)
+UPDATE bdProduto
+SET quantidadeProduto = quantidadeProduto - 30
 WHERE codFornecedor = 1
 
-UPDATE INTO tbCliente(nomeCliente)
-VALUES ('Adriana Nogueira Silva Campos')
+UPDATE tbCliente
+SET nomeCliente = 'Adriana Nogueira Silva Campos'
 WHERE codCliente = 5
 
-UPDATE INTO tbVenda (valorTotalVenda)
-VALUES (4275)
-,(3230)
-,(1995)
-,(2565)
+UPDATE tbVenda (valorTotalVenda)
+SET valorTotalVenda = ValorTotalVenda * 0.95
 WHERE dataVenda = %/02/2014
 
-DELETE INTO tbItensVenda
+DELETE tbItensVenda
 (quantidadeItensVenda,subTotalItensVenda)
 WHERE codProduto = 5
