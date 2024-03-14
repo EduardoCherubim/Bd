@@ -1,1 +1,3 @@
-USE bd
+USE bdEstoque
+
+UPDATE INTO bdProfuto
