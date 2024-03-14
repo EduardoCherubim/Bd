@@ -19,3 +19,17 @@ VALUES (1470)
 ,(1570)
 WHERE codFornecedor = 1
 
+UPDATE INTO tbCliente(nomeCliente)
+VALUES ('Adriana Nogueira Silva Campos')
+WHERE codCliente = 5
+
+UPDATE INTO tbVenda (valorTotalVenda)
+VALUES (4275)
+,(3230)
+,(1995)
+,(2565)
+WHERE dataVenda = %/02/2014
+
+DELETE INTO tbItensVenda
+(quantidadeItensVenda,subTotalItensVenda)
+WHERE codProduto = 5
