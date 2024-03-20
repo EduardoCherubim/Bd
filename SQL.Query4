@@ -1,0 +1,30 @@
+aSELECT SUM(quantidadeProduto) FROM tbProduto
+WHERE codFabricante = 2
+
+bSELECT AVG(valorProduto) FROM tbProduto
+WHERE codFabricante = 2
+
+cSELECT SUM(valorProduto) FROM tbProduto
+WHERE codFabricante = 1
+
+dSELECT AVG(valorProduto) FROM tbProduto
+WHERE codFabricante = 3
+
+eSELECT SUM(quantidadeProduto) FROM tbProduto
+WHERE codFabricante = 3
+
+fSELECT AVG(valorProduto) FROM tbProduto
+WHERE codFabricante = 1
+
+gSELECT AVG(quantidadeProduto) FROM tbProduto
+WHERE codFabricante = 2
+
+hSELECT AVG(valorProduto) FROM tbProduto
+WHERE quantidadeProduto <= 200
+
+iSELECT AVG(quantidadeProduto) FROM tbProduto
+WHERE codFabricante = 1
+
+jSELECT SUM(valorTotalVenda) FROM tbProduto
+WHERE dataVenda = %/02/2014
+AND dataVenda = %/03/2014
