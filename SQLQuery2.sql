@@ -1,68 +1,29 @@
 USE bdEstoque
 
-INSERT INTO tbCliente (nomeCliente,cpfCliente,emailCliente,sexoCliente,dataNascimento)	
-VALUES
-	('Amando JosÃ© Santana','123.456.789-00','amandojsanatana@outlook.com','M','21/02/1961')
-	,('Sheila Carvalho Leal','456.789.098-23','scarvalho@ig.com.br','F','13/09/1978')
-	,('Carlos Henrique Souza','765.982.782-99','chenrique@ig.com.br','M','08/09/1981')
-	,('Maria Aparecida Souza','873.653.098-99','mapdasouza@outlook.com','F','07/07/1962')
-	,('Adriana Nogueira Silva','763.543.093-88','drica1977@ig.com.br','F','09/04/1977')
-	,('Paulo Henrique Silva','873.901.231-11','phsilva80@hotmail.com','M','02/02/1987')
+--criar uma consulta que retorne o código do produto,o nome do produto e o nome do fabricantesomente daqueles produtos que custam igual ao valor mais alto--
 
-INSERT INTO tbFabricante (nomeFabricante)
-VALUES
-	('Unilever')
-	,('P&G')
-	,('Bunge')
+SELECT codProduto, descricaoProduto, nomeFabricante FROM tbProduto
+	INNER JOIN tbFabricante ON tbProduto.codFabricante = tbFabricante.codFabricante
+	WHERE valorProduto = (SELECT MAX(valorProduto) FROM tbProduto)
 
-INSERT INTO tbFornecedor (nomeFornecedor,contatoFornecedor)
-VALUES
-	('AtacadÃ£o','Carlos Santos')
-	,('Assai','Maria Stella')
-	,('RoldÃ£o','Paulo CÃ©sar')
+--Criar uma consulta que retorne o nome do produto e o nome do fabricante e o valor somente dos produtos que custem acima do valor médio dos produtos em estoque--
 
-INSERT INTO tbProduto (descricaoProduto,valorProduto,quantidadeProduto)
-VALUES
-	('Amaciante Downy',5.76,1500)
-	,('Amaciante Comfort',5.45.2300)
-	,('SabÃ£o em pÃ³ OMO',5.99,1280)
-	,('Margarina Qually',4,76,2500)
-	,('Salsicha Hot Dog Saddia',6.78,2900)
-	,('Mortadela PerdigÃ£o',2.50,1200)
-	,('Hamburguer Saddia',9.89,1600)
-	,('Fralda Pampers',36,340)
-	,('Xampu Seda',5.89,800)
-	,('Condicionador Seda',6.50,700)
+SELECT descricaoProduto, nomeFabricante, valorProduto FROM tbProduto
+	INNER JOIN tbFabricante ON tbProduto.codFabricante = tbFabricante.codFabricante
+	WHERE valorProduto > (SELECT AVG(valorProduto) FROM tbProduto)
 
-INSERT INTO tbVenda
-tbVenda(dataVenda,valorTotalVenda)
-VALUES
-('01/02/2014',4500)
-,('03/02/2014',3400)
-,('10/02/2014',2100)
-,('15/02/2014',2700)
-,('17/03/2014',560)
-,('09/04/2014',1200)
-,('07/05/2014',3500)
-,('07/05/2014',3400)
-,('05/05/2014',4000)
+--Criar uma consulta que retorne o nome dos clientes tiveram vendas com valor acima do valor médio das vendas
 
-INSERT INTO tbItensVenda
-(quantidadeItensVenda,subTotalItensVenda)
-VALUES
-(200,1500)
-,(300,3000)
-,(120,1400)
-,(200,1000)
-,(130,1000)
-,(200,2100)
-,(120,1000)
-,(450,700)
-,(200,560)
-,(200,600)
-,(300,600)
-,(300,2500)
-,(200,1000)
-,(250,1700)
-,(200,1700)
-,(1000,4000)
+SELECT nomeCliente FROM tbCliente
+	INNER JOIN tbVenda ON tbCliente.codCliente = tbVenda.codCliente
+	WHERE valorTotalVenda > (SELECT AVG(valorTotalVenda) FROM tbVenda)
+
+--Criar uma consulta que retorno o nome e o preço dos produtos mais caros
+
+SELECT descricaoProduto, valorProduto FROM tbProduto
+WHERE valorProduto = (SELECT MAX(valorProduto) FROM tbProduto)
+
+--Criar uma consulta que retorne o nome e o preço do produto mais barato
+
+SELECT descricaoProduto, valorProduto FROM tbProduto
+WHERE valorProduto = (SELECT MIN(valorProduto) FROM tbProduto)
